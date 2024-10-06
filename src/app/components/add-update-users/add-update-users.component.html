@@ -1,0 +1,54 @@
+<div class="container my-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+      <hr>
+      <form class="row g-3" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="col-md-6">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" placeholder="Name" formControlName="name" />
+          <div class="invalid-feedback d-inline-block"
+            *ngIf="userForm.get('name')?.invalid && (userForm.get('name')?.touched || userForm.get('name')?.dirty)">
+            Name is required.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+          <div class="invalid-feedback  d-inline-block"
+            *ngIf="userForm.get('email')?.hasError('required') && (userForm.get('email')?.touched || userForm.get('email')?.dirty)">
+            Email is required.
+          </div>
+          <div class="invalid-feedback  d-inline-block"
+            *ngIf="userForm.get('email')?.hasError('email') && (userForm.get('email')?.touched || userForm.get('email')?.dirty)">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Company</label>
+          <input type="text" class="form-control" placeholder="Company" formControlName="company" />
+          <div class="invalid-feedback  d-inline-block"
+            *ngIf="userForm.get('company')?.invalid && (userForm.get('company')?.touched || userForm.get('company')?.dirty)">
+            Company name is required.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" placeholder="Address" formControlName="address" />
+          <div class="invalid-feedback  d-inline-block"
+            *ngIf="userForm.get('address')?.invalid && (userForm.get('address')?.touched || userForm.get('address')?.dirty)">
+            Address is required.
+          </div>
+        </div>
+
+        <div class="col-12 text-end">
+          <button type="submit" class="btn btn-success rounded-pill" type="submit">Save</button>
+          <button type="submit" class="btn btn-danger rounded-pill ms-2" type="button" routerLink="/">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
