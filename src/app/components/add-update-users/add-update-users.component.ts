@@ -70,30 +70,25 @@ export class AddUpdateUsersComponent implements OnInit {
       return;
     }
 
-    if (this.userId) {
-      const userPayload = {
-        ...this.userForm.value,
-        id: this.userId,
-      };
+    const userPayload = {
+      ...this.userForm.value,
+    };
 
-      this.apiService.updateUser(userPayload).subscribe({
+    if (this.userId) {
+      this.apiService.updateUser(this.userId, userPayload).subscribe({
         next: (res: any) => {
           this.notification.showSuccess('User updated successfully.');
-          this.router.navigate(['/']);
+          this.router.navigate(['/users']);
         },
         error: (error: any) => {
           this.notification.showError(error?.message);
         },
       });
     } else {
-      const userPayload = {
-        ...this.userForm.value,
-      };
-
       this.apiService.createUser(userPayload).subscribe({
         next: (res: any) => {
           this.notification.showSuccess('User created successfully.');
-          this.router.navigate(['/']);
+          this.router.navigate(['/users']);
         },
         error: (error: any) => {
           this.notification.showError(error?.message);

@@ -26,9 +26,9 @@ export class ApiService {
     );
   }
 
-  updateUser(payload: any) {
-    return this.http.post(
-      'https://66be147374dfc195586e84a7.mockapi.io/api/v1/users',
+  updateUser(userId: any, payload: any) {
+    return this.http.put(
+      `https://66be147374dfc195586e84a7.mockapi.io/api/v1/users/${userId}`,
       payload
     );
   }
